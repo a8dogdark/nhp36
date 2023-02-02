@@ -1,6 +1,6 @@
 ; No Hay Problema Versión 3.6 (NHP 3.6)
 ; -------------------------------------
-; Programmer by Parche Negro 1997
+; Programmer by Parche Negro 1991
 ; Disassembler by DogDark 2019
 ; Comments by AsCrNet 2023
 ;
