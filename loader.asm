@@ -1,5 +1,7 @@
-load_init = $CC00
+; Program load controller, block counter and tape error verification
 ;
+load_init = $CC00
+
 l_load = [.len loader]
 
 .proc loader,load_init
@@ -8,9 +10,8 @@ BAFER = $0700
 BUFAUX = $0800
 ?RUTINA = BUFAUX+JUMP-RUTINA
 GENDAT = $47
-;
-	//ORG $CC00
-	.BYTE $55,$55
+;   ORG $CC00
+    .BYTE $55,$55
     .BYTE $A0,$00
     STY $CC03
     INY
@@ -163,7 +164,7 @@ TABLA
 CONCHAT
     LDA # <MERR
     LDX # >MERR
-	STA DLERR
+    STA DLERR
     STX DLERR+1
     RTS
 ERROR

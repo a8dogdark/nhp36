@@ -1,8 +1,11 @@
+; First load block and check for error on this one.
+;
 pagina4_init = $03FD
+;
 .proc pagina4, pagina4_init
 
-	//ORG $03FD
-	.BYTE $55,$55,$FE
+;   ORG $03FD
+   .BYTE $55,$55,$FE
     LDA $D301
     AND #$02
     BEQ ERROR

@@ -1,11 +1,9 @@
-;	OPT NO LIST
+; No Hay Problema Versión 3.6 (NHP 3.6)
+; -------------------------------------
+; Programmer by Parche Negro 1997
+; Disassembler by DogDark 2019
+; Comments by AsCrNet 2023
 ;
-; GRABADOR SISTEMA NHP VER 3.6
-;
-; SAVE #D8:GRABB
-;
-;
-; ASM,,#D8:GRABB.COM
 ;
 @LEN =  LEN+2
 @LBAF = LEN+4
@@ -34,13 +32,13 @@ BL4 =   LAUTO/128
 LAST =  LAUTO-128*BL4
 GENDAT = $47
 ;
-	ORG $2000
-    ICL 'KEM2.ASM'
-    ICL 'inclloader.asm'
+    ORG $2000
+    ICL 'move_rom.asm'
+    ICL 'include.asm'
 DLS
     .BYTE $70,$70,$70,$46
     .WORD SHOW
-	.BYTE $70,$70,$02,$70,$70,$02,$02,$70
+    .BYTE $70,$70,$02,$70,$70,$02,$02,$70
     .BYTE $70,$70,$06,$70,$70,$70,$02,$70
     .BYTE $70,$70,$06,$70,$70,$70,$02,$41
     .WORD DLS
@@ -86,18 +84,18 @@ BLOQUES
 ???DIR
     .SB "     DIRECTORIO     "
 ??DIR
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
-	.SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
+    .SB "                                        "
 RY
-	.BYTE 0,0
+    .BYTE 0,0
 LEN
     .BYTE 0,0,0,0,0,0
 CONT
@@ -138,7 +136,7 @@ RESTORE
     LDA #$00
     STA NAME,Y
     STA FILE,Y
-	DEY
+    DEY
     BPL ?RESTORE
     LDY #23
 ??RESTORE
@@ -546,7 +544,7 @@ PL0
     LDA LBUFF,X
     CMP #$80
     BCS PL1
-    CMP #$2E		;'.
+    CMP #$2E	;'.
     BEQ PL2
     INX
     INY
@@ -554,7 +552,7 @@ PL0
 PL1
     RTS
 PL2
-	DEX
+    DEX
     LDA LBUFF,X
     ORA #$80
     STA LBUFF,X
@@ -563,19 +561,19 @@ PL2
 SAVESIO
     LDX #$0B
 ?SAVESIO
-	LDA ESIO,X
+    LDA ESIO,X
     STA $0300,X
     DEX
     BPL ?SAVESIO
     JMP $E459
 ESIO
-	.BYTE $60,$00,$50,$80
+    .BYTE $60,$00,$50,$80
     .WORD ESPSIO
     .BYTE $23,$00
     .WORD 26
     .BYTE $00,$80
 OPENC
-	LDA $D40B
+    LDA $D40B
     BNE OPENC
     LDA #$FF
     STA 764		;$02FC
@@ -595,10 +593,10 @@ PONDATA
     STA BLQ+2
     LDY #$13
 ?PONDATA
-	LDA NAME,Y
-	STA NME,Y
-	DEY
-	BPL ?PONDATA   
+    LDA NAME,Y
+    STA NME,Y
+    DEY
+    BPL ?PONDATA   
     RTS
 INITSIOV
     LDY #$0B
@@ -663,9 +661,9 @@ MVPG7
     BPL FALTA
     RTS
 GAUTO
-	LDA $D20A
-	STA GENDAT
-	STA @GENDAT
+    LDA $D20A
+    STA GENDAT
+    STA @GENDAT
     LDA #$FF
     STA $D301
     JSR AUTORUN
@@ -741,7 +739,7 @@ NHPUT
     LDA #$55
     STA ??DIR
     STA ??DIR+1
-    LDA #252	;$FC
+    LDA #252 ;$FC
     STA ??DIR+255
     LDA FTURBO
     AND #$DF
@@ -800,7 +798,7 @@ NHCONT
 NOHI
     JMP NHLOP
 GBYTE
-	CPY ??DIR+255
+    CPY ??DIR+255
     BEQ EGRAB
     TYA
 M
@@ -845,7 +843,7 @@ DECBL02
     DEC BLOQUES,X
     PLA
     TAX
-	LDA $02E2
+    LDA $02E2
     BNE SLOWB
 SIGUE
     JSR GRABACION
@@ -974,5 +972,5 @@ PIRATAS
     STY $08
     INY   
     STY $0244
-	JMP START
-	RUN PIRATAS
+    JMP START
+    RUN PIRATAS

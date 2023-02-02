@@ -1,26 +1,28 @@
+; Second loading block and mini splash screen.
+;
 pagina7_init = $0700
-
+;
 .proc pagina7, pagina7_init
-	//org $0700
+;   org $0700
 INICIO
-	.BYTE $00,$03
-	.WORD INICIO,PRINCIPAL
-	JSR KEM
-	LDX $230
-	LDY $0231
-	STX $CFFC
-	STY $CFFD
-	LDX #<DLS
-	LDY #>DLS
-	LDA #$00
-	STX $0230
-	STX $D402
-	STY $0231
-	STY $D403
-	STA $41
-	JMP $0400
+    .BYTE $00,$03
+    .WORD INICIO,PRINCIPAL
+    JSR KEM
+    LDX $230
+    LDY $0231
+    STX $CFFC
+    STY $CFFD
+    LDX #<DLS
+    LDY #>DLS
+    LDA #$00
+    STX $0230
+    STX $D402
+    STY $0231
+    STY $D403
+    STA $41
+    JMP $0400
 KEM
-	LDX #$C0
+    LDX #$C0
     LDY #$00
     SEI
     LDA $D40E
@@ -105,24 +107,24 @@ CC1
 CC3
     JMP $ED3D
 STACF
-	.BY +128,"  Por Parche Negro Soft  "
+    .BY +128,"  Por Parche Negro Soft  "
 DLS
-	.BYTE $70,$70,$70,$70,$70,$70,$70
-	.BYTE $70,$70,$70,$70,$70,$70,$70
-	.BYTE $47
-	.WORD SHOW
-	.BYTE $41
-	.WORD DLS
+    .BYTE $70,$70,$70,$70,$70,$70,$70
+    .BYTE $70,$70,$70,$70,$70,$70,$70
+    .BYTE $47
+    .WORD SHOW
+    .BYTE $41
+    .WORD DLS
 SHOW
-	.SB "  --   PRISMA   --  "
+    .SB "  --   PRISMA   --  "
 PRINCIPAL
-	LDX #<INICIO
-	LDY #>INICIO
-	STX $0C
-	STY $0D
-	LDX $CFFC
-	LDY $CFFD
-	STX $230
-	STY $231
-	JMP ($0304)
+    LDX #<INICIO
+    LDY #>INICIO
+    STX $0C
+    STY $0D
+    LDX $CFFC
+    LDY $CFFD
+    STX $230
+    STY $231
+    JMP ($0304)
 .endp

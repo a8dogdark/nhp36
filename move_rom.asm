@@ -1,8 +1,7 @@
-;
-; SAVE #D8:KEM2
+; Routine to move from ROM to RAM and modify baud rate parameters
 ;
 KEM
-	LDX #$C0
+    LDX #$C0
     LDY #$00
     SEI
     LDA $D40E
